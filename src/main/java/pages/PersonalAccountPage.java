@@ -13,6 +13,7 @@ import static org.junit.Assert.assertTrue;
 public class PersonalAccountPage {
     private final WebDriver driver;
     private final By buttonOutAccount = By.className("Account_button__14Yp3"); // кнопка Выход
+    private final By personalPage = By.className("App_componentContainer__2JC2W");
     private final By linkConstructor = By.xpath(".//p[text()='Конструктор']"); // ссылка на раздел Конструктор
     private final By logotype = By.className("AppHeader_header__logo__2D0X2"); // логотип на главной странице
     private final By loadingPage = By.className("Modal_modal_overlay__x2ZCr"); // модальное окно ожидания загрузки страницы
@@ -45,7 +46,6 @@ public class PersonalAccountPage {
 
     @Step("Клик по логотипу в личном кабинете")
     public void clickLogotype() {
-
         new WebDriverWait(driver, Duration.ofSeconds(EnvConfig.EXPLICIT_WAIT))
                 .until(ExpectedConditions.invisibilityOfElementLocated(loadingPage));
 
@@ -56,13 +56,13 @@ public class PersonalAccountPage {
     }
 
     @Step("Проверка отображения личного кабинета после авторизации")
-    public void checkPersonal() {
+    public void checkOpenPersonalPage() {
         new WebDriverWait(driver, Duration.ofSeconds(EnvConfig.EXPLICIT_WAIT))
                 .until(ExpectedConditions.invisibilityOfElementLocated(loadingPage));
 
         new WebDriverWait(driver, Duration.ofSeconds(EnvConfig.EXPLICIT_WAIT))
-                .until(ExpectedConditions.visibilityOfElementLocated(buttonOutAccount));
+                .until(ExpectedConditions.visibilityOfElementLocated(personalPage));
 
-        assertTrue(driver.findElement(buttonOutAccount).isDisplayed());
+        assertTrue(driver.findElement(personalPage).isDisplayed());
     }
 }

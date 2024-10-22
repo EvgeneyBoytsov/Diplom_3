@@ -1,4 +1,5 @@
 package pages;
+
 import io.qameta.allure.Step;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.By;
@@ -67,7 +68,7 @@ public class HomePage {
     }
 
     @Step("Клик на кнопку Булки")
-    public void clickBun() {
+    public void clickBunButton() {
         new WebDriverWait(driver, Duration.ofSeconds(EnvConfig.EXPLICIT_WAIT))
                 .until(ExpectedConditions.invisibilityOfElementLocated(loadingPage));
 
@@ -78,7 +79,7 @@ public class HomePage {
     }
 
     @Step("Клик на кнопку Соусы")
-    public void clickSauce() {
+    public void clickSauceButton() {
         new WebDriverWait(driver, Duration.ofSeconds(EnvConfig.EXPLICIT_WAIT))
                 .until(ExpectedConditions.invisibilityOfElementLocated(loadingPage));
 
@@ -89,7 +90,7 @@ public class HomePage {
     }
 
     @Step("Клик на кнопку Начинки")
-    public void clickFilling() {
+    public void clickFillingButton() {
         new WebDriverWait(driver, Duration.ofSeconds(EnvConfig.EXPLICIT_WAIT))
                 .until(ExpectedConditions.invisibilityOfElementLocated(loadingPage));
 
@@ -100,7 +101,7 @@ public class HomePage {
     }
 
     @Step("Проверка открытия главной страницы после авторизации")
-    public void checkLogIn() {
+    public void checkOpenLoginPage() {
         new WebDriverWait(driver, Duration.ofSeconds(EnvConfig.EXPLICIT_WAIT))
                 .until(ExpectedConditions.invisibilityOfElementLocated(loadingPage));
 
@@ -111,7 +112,7 @@ public class HomePage {
     }
 
     @Step("Проверка открытия конструктора бургера")
-    public void checkBurgerConstructor() {
+    public void checkOpenBurgerConstructor() {
         new WebDriverWait(driver, Duration.ofSeconds(EnvConfig.EXPLICIT_WAIT))
                 .until(ExpectedConditions.invisibilityOfElementLocated(loadingPage));
 
@@ -122,7 +123,7 @@ public class HomePage {
     }
 
     @Step("Проверка открытия в раздел Булки")
-    public void checkBunSection() {
+    public void checkOpenBunSection() {
         new WebDriverWait(driver, Duration.ofSeconds(EnvConfig.EXPLICIT_WAIT))
                 .until(ExpectedConditions.invisibilityOfElementLocated(loadingPage));
 
@@ -133,7 +134,7 @@ public class HomePage {
     }
 
     @Step("Проверка открытия в раздел Соусы")
-    public void checkSauceSection() {
+    public void checkOpenSauceSection() {
         new WebDriverWait(driver, Duration.ofSeconds(EnvConfig.EXPLICIT_WAIT))
                 .until(ExpectedConditions.invisibilityOfElementLocated(loadingPage));
 
@@ -150,7 +151,7 @@ public class HomePage {
     }
 
     @Step("Проверка открытия в раздел Начинки")
-    public void checkFillingSection() {
+    public void checkOpenFillingSection() {
         new WebDriverWait(driver, Duration.ofSeconds(EnvConfig.EXPLICIT_WAIT))
                 .until(ExpectedConditions.invisibilityOfElementLocated(loadingPage));
 
@@ -174,8 +175,8 @@ public class HomePage {
     @Step("Проверка перехода в раздел Начинки")
     public void checkConstructorFillingSection() {
         open();
-        clickFilling();
-        checkFillingSection();
+        clickFillingButton();
+        checkOpenFillingSection();
         scrollLastFilling();
         checkLastFilling();
     }
@@ -183,16 +184,16 @@ public class HomePage {
     @Step("Проверка перехода в раздел Соусы")
     public void checkConstructorSauceSection() {
         open();
-        clickFilling();
-        clickSauce();
-        checkSauceSection();
+        clickFillingButton();
+        clickSauceButton();
+        checkOpenSauceSection();
     }
 
     @Step("Проверка перехода в раздел Булки")
     public void checkConstructorBunSection() {
         open();
-        clickFilling();
-        clickBun();
-        checkBunSection();
+        clickFillingButton();
+        clickBunButton();
+        checkOpenBunSection();
     }
 }

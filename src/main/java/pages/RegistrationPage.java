@@ -12,7 +12,7 @@ public class RegistrationPage {
     private final WebDriver driver;
 
     private final By fieldName = By.cssSelector("input[name='name']"); // поле Имя
-    private final By fieldEmail = By.cssSelector("#root > div > main > div > form > fieldset:nth-child(2) > div > div > input"); // поле Почта
+    private final By fieldEmail = By.cssSelector(".Auth_fieldset__1QzWN:nth-child(2) input.text_type_main-default"); // поле Почта
     private final By fieldPassword = By.cssSelector("input[name='Пароль']"); // поле Пароль
     private final By registerButton = By.xpath(".//button[text()='Зарегистрироваться']");// кнопка Зарегистрироваться
     private final By errorMessage = By.xpath(".//p[text()='Некорректный пароль']"); // сообщение об неверном пароле
@@ -23,18 +23,18 @@ public class RegistrationPage {
     }
 
     @Step("Ввод в поле Имя на странице регистрации")
-    public void inputFieldName() {
-        driver.findElement(fieldName).sendKeys("Make");
+    public void inputFieldName(String name) {
+        driver.findElement(fieldName).sendKeys(name);
     }
 
     @Step("Ввод в поле Email на странице регистрации")
-    public void inputFieldEmail() {
-        driver.findElement(fieldEmail).sendKeys("selenium-test@yandex.ru");
+    public void inputFieldEmail(String email) {
+        driver.findElement(fieldEmail).sendKeys(email);
     }
 
     @Step("Ввод в поле Password на странице регистрации")
-    public void inputFieldPassword() {
-        driver.findElement(fieldPassword).sendKeys("123456789");
+    public void inputFieldPassword(String password) {
+        driver.findElement(fieldPassword).sendKeys(password);
     }
 
     @Step("Ввод в поле Password невалидного пароля на странице регистрации")
@@ -59,17 +59,17 @@ public class RegistrationPage {
     }
 
     @Step("Регистрация пользователя с валидными данными")
-    public void registrationUser() {
-        inputFieldName();
-        inputFieldEmail();
-        inputFieldPassword();
+    public void registrationUser(String name, String email, String password) {
+        inputFieldName(name);
+        inputFieldEmail(email);
+        inputFieldPassword(password);
         clickRegButton();
     }
 
     @Step("Регистрация пользователя с невалидными данными")
-    public void checkErrorPassword() {
-        inputFieldName();
-        inputFieldEmail();
+    public void checkErrorPassword(String name, String email) {
+        inputFieldName(name);
+        inputFieldEmail(email);
         inputFieldPasswordError();
         clickRegButton();
         checkError();

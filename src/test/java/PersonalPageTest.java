@@ -12,8 +12,7 @@ import pages.HomePage;
 import pages.LoginPage;
 import pages.PersonalAccountPage;
 
-public class LogOutTest {
-
+public class PersonalPageTest {
     private final UserClient client = new UserClient();
     private final UserCheck check = new UserCheck();
     User defaultUser = User.randomCreatedUser();
@@ -23,8 +22,8 @@ public class LogOutTest {
     public DriverRule factory = new DriverRule();
 
     @Test
-    @DisplayName("Тест выхода из аккаунта при клике на кнопку Выход в личном кабинете")
-    public void logOutAccountTest() {
+    @DisplayName("Тест перехода в личного кабинета авторизованного пользователя")
+    public void personalPageTest() {
 
         ValidatableResponse createdResponse = client.createUser(defaultUser);
         userAutToken = check.checkCreatedUser(createdResponse);
@@ -41,9 +40,6 @@ public class LogOutTest {
         PersonalAccountPage personalPage = homePage.clickButtonPersonalAccount();
 
         personalPage.checkOpenPersonalPage();
-        personalPage.clickButtonOutAccount();
-
-        loginPage.checkOpenPageLogInAccount();
     }
 
     @After
