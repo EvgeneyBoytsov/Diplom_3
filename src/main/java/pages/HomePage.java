@@ -16,9 +16,9 @@ public class HomePage {
 
     private final By orderButton = By.className("button_button_size_large__G21Vg"); // кнопка оформить заказа
     private final By burgerConstructor = By.className("BurgerIngredients_ingredients__1N8v2"); // раздел конструктора бургера
-    private final By sauceButton = By.xpath(".//span[text()='Соусы']"); //  кнопка Соусы
-    private final By bunButton = By.xpath(".//span[text()='Булки']"); //  кнопка Булки
-    private final By fillingButton = By.xpath(".//span[text()='Начинки']"); //  кнопка Начинки
+    private final By sauceButton = By.cssSelector(".tab_tab__1SPyG:nth-child(2)"); //  кнопка Соусы
+    private final By bunButton = By.cssSelector(".tab_tab__1SPyG:nth-child(1)"); //  кнопка Булки
+    private final By fillingButton = By.cssSelector(".tab_tab__1SPyG:nth-child(3)"); //  кнопка Начинки
     private final By personalAccountButton = By.xpath(".//p[text()='Личный Кабинет']"); // кнопка личный кабинет
     private final By fieldFilling = By.xpath(".//h2[text()='Начинки']"); // ссылка на раздел Начинки в конструкторе бургера
     private final By lastFilling = By.cssSelector("img[alt='Сыр с астероидной плесенью']"); // ссылка на последний элемент раздела Начинки в конструкторе бургера
@@ -32,12 +32,10 @@ public class HomePage {
     }
 
     @Step("Переход на сайт Stellar Burger")
-    public void open() {
+    public void openStellarBurger() {
         new WebDriverWait(driver, Duration.ofSeconds(EnvConfig.EXPLICIT_WAIT))
                 .until(ExpectedConditions.invisibilityOfElementLocated(loadingPage));
 
-        new WebDriverWait(driver, Duration.ofSeconds(EnvConfig.EXPLICIT_WAIT))
-                .until(ExpectedConditions.invisibilityOfElementLocated(loadingPage));
         driver.get(EnvConfig.BASE_URL);
     }
 
@@ -130,6 +128,9 @@ public class HomePage {
         new WebDriverWait(driver, Duration.ofSeconds(EnvConfig.EXPLICIT_WAIT))
                 .until(ExpectedConditions.visibilityOfElementLocated(fieldBun));
 
+        new WebDriverWait(driver, Duration.ofSeconds(EnvConfig.EXPLICIT_WAIT))
+                .until(ExpectedConditions.attributeContains(bunButton,"class","current"));
+
         assertTrue(driver.findElement(fieldBun).isDisplayed());
     }
 
@@ -140,6 +141,9 @@ public class HomePage {
 
         new WebDriverWait(driver, Duration.ofSeconds(EnvConfig.EXPLICIT_WAIT))
                 .until(ExpectedConditions.visibilityOfElementLocated(fieldSauce));
+
+        new WebDriverWait(driver, Duration.ofSeconds(EnvConfig.EXPLICIT_WAIT))
+                .until(ExpectedConditions.attributeContains(sauceButton,"class","current"));
 
         assertTrue(driver.findElement(fieldSauce).isDisplayed());
     }
@@ -158,6 +162,9 @@ public class HomePage {
         new WebDriverWait(driver, Duration.ofSeconds(EnvConfig.EXPLICIT_WAIT))
                 .until(ExpectedConditions.visibilityOfElementLocated(fieldFilling));
 
+        new WebDriverWait(driver, Duration.ofSeconds(EnvConfig.EXPLICIT_WAIT))
+                .until(ExpectedConditions.attributeContains(fillingButton,"class","current"));
+
         assertTrue(driver.findElement(fieldFilling).isDisplayed());
     }
 
@@ -174,7 +181,7 @@ public class HomePage {
 
     @Step("Проверка перехода в раздел Начинки")
     public void checkConstructorFillingSection() {
-        open();
+        openStellarBurger();
         clickFillingButton();
         checkOpenFillingSection();
         scrollLastFilling();
@@ -183,7 +190,7 @@ public class HomePage {
 
     @Step("Проверка перехода в раздел Соусы")
     public void checkConstructorSauceSection() {
-        open();
+        openStellarBurger();
         clickFillingButton();
         clickSauceButton();
         checkOpenSauceSection();
@@ -191,7 +198,7 @@ public class HomePage {
 
     @Step("Проверка перехода в раздел Булки")
     public void checkConstructorBunSection() {
-        open();
+        openStellarBurger();
         clickFillingButton();
         clickBunButton();
         checkOpenBunSection();

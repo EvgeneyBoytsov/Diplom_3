@@ -11,6 +11,7 @@ import static org.junit.Assert.assertTrue;
 public class LoginPage {
 
     private final WebDriver driver;
+
     private final By fieldEmail = By.cssSelector("input[name='name']"); // поле почта
     private final By fieldPassword = By.cssSelector("input[name='Пароль']"); // поле пароль
     private final By buttonLogIn = By.xpath(".//button[text()='Войти']"); // кнопка войти

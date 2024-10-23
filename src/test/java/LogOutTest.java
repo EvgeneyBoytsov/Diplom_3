@@ -24,15 +24,15 @@ public class LogOutTest {
 
     @Test
     @DisplayName("Тест выхода из аккаунта при клике на кнопку Выход в личном кабинете")
-    public void logOutAccountTest() {
+    public void checkLogoutUser() {
 
         ValidatableResponse createdResponse = client.createUser(defaultUser);
-        userAutToken = check.checkCreatedUser(createdResponse);
+        userAutToken = check.checkCreateUser(createdResponse);
 
         WebDriver driver = factory.getDriver();
         var homePage = new HomePage(driver);
 
-        homePage.open();
+        homePage.openStellarBurger();
         LoginPage loginPage = homePage.clickButtonLogIn();
 
         loginPage.loginOnClickLogAccountButton(defaultUser.getEmail(), defaultUser.getPassword());
@@ -50,6 +50,6 @@ public class LogOutTest {
     @DisplayName("Удаление пользователя")
     public void deleteUser() {
         if (userAutToken != null)
-            client.delete(StringUtils.substringAfter(userAutToken, " "));
+            client.deleteUser(StringUtils.substringAfter(userAutToken, " "));
     }
 }

@@ -24,15 +24,15 @@ public class ConstructorTest {
 
     @Test
     @DisplayName("Тест перехода из личного кабинета в раздел конструктор по клику на кнопку Конструктор")
-    public void constructorButtonTest() {
+    public void checkSwitchToConstructorWithClickButtonConstructor() {
 
         ValidatableResponse createdResponse = client.createUser(defaultUser);
-        userAutToken = check.checkCreatedUser(createdResponse);
+        userAutToken = check.checkCreateUser(createdResponse);
 
         WebDriver driver = factory.getDriver();
         var homePage = new HomePage(driver);
 
-        homePage.open();
+        homePage.openStellarBurger();
         LoginPage loginPage = homePage.clickButtonLogIn();
 
         loginPage.loginOnClickLogAccountButton(defaultUser.getEmail(), defaultUser.getPassword());
@@ -48,15 +48,15 @@ public class ConstructorTest {
 
     @Test
     @DisplayName("Тест перехода из личного кабинета в раздел конструктор по клику на логотип")
-    public void logotypeButtonTest() {
+    public void checkSwitchToConstructorWithClickLogotype() {
 
         ValidatableResponse createdResponse = client.createUser(defaultUser);
-        userAutToken = check.checkCreatedUser(createdResponse);
+        userAutToken = check.checkCreateUser(createdResponse);
 
         WebDriver driver = factory.getDriver();
         var homePage = new HomePage(driver);
 
-        homePage.open();
+        homePage.openStellarBurger();
         LoginPage loginPage = homePage.clickButtonLogIn();
 
         loginPage.loginOnClickLogAccountButton(defaultUser.getEmail(), defaultUser.getPassword());
@@ -72,7 +72,7 @@ public class ConstructorTest {
 
     @Test
     @DisplayName("Тест перехода в раздел Начинки по клику на кнопку Начинки")
-    public void fillingButtonTest() {
+    public void checkToSwitchFillingSection() {
 
         WebDriver driver = factory.getDriver();
         var homePage = new HomePage(driver);
@@ -83,7 +83,7 @@ public class ConstructorTest {
 
     @Test
     @DisplayName("Тест перехода в раздел Соусы по клику на кнопку Соусы")
-    public void sauceButtonTest() {
+    public void checkToSwitchSauceSection() {
         WebDriver driver = factory.getDriver();
         var homePage = new HomePage(driver);
 
@@ -92,7 +92,7 @@ public class ConstructorTest {
 
     @Test
     @DisplayName("Тест перехода в раздел Булки по клику на кнопку Булки")
-    public void bunButtonTest() {
+    public void checkToSwitchBunSection() {
         WebDriver driver = factory.getDriver();
         var homePage = new HomePage(driver);
 
@@ -103,6 +103,6 @@ public class ConstructorTest {
     @DisplayName("Удаление пользователя")
     public void deleteUser() {
         if (userAutToken != null)
-            client.delete(StringUtils.substringAfter(userAutToken, " "));
+            client.deleteUser(StringUtils.substringAfter(userAutToken, " "));
     }
 }

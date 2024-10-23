@@ -22,13 +22,13 @@ public class RegisterTest {
 
     @Test
     @DisplayName("Тест регистрации пользователя при вводе валидных данных")
-    public void userRegistrationTest() {
+    public void checkUserRegistration() {
         User defaultUser = User.randomCreatedUser();
 
         WebDriver driver = factory.getDriver();
         var homePage = new HomePage(driver);
 
-        homePage.open();
+        homePage.openStellarBurger();
         LoginPage loginPage = homePage.clickButtonLogIn();
 
         RegistrationPage registerPage = loginPage.clickLinkRegister();
@@ -45,14 +45,14 @@ public class RegisterTest {
 
     @Test
     @DisplayName("Тест регистрации пользователя при вводе невалидных данных")
-    public void userRegistrationWithInvalidedData() {
+    public void checkUserRegistrationWithInvalidedData() {
 
         User defaultUser = User.randomCreatedUser();
 
         WebDriver driver = factory.getDriver();
         var homePage = new HomePage(driver);
 
-        homePage.open();
+        homePage.openStellarBurger();
         LoginPage loginPage = homePage.clickButtonLogIn();
 
         RegistrationPage registerPage = loginPage.clickLinkRegister();
@@ -63,6 +63,6 @@ public class RegisterTest {
     @DisplayName("Удаление пользователя")
     public void deleteUser() {
         if (userAutToken != null)
-            client.delete(StringUtils.substringAfter(userAutToken, " "));
+            client.deleteUser(StringUtils.substringAfter(userAutToken, " "));
     }
 }

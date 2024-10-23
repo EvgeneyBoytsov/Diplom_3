@@ -11,9 +11,11 @@ import java.time.Duration;
 import static org.junit.Assert.assertTrue;
 
 public class PersonalAccountPage {
+
     private final WebDriver driver;
+
     private final By buttonOutAccount = By.className("Account_button__14Yp3"); // кнопка Выход
-    private final By personalPage = By.className("App_componentContainer__2JC2W");
+    private final By personalPage = By.xpath(".//a[text()='Профиль']");
     private final By linkConstructor = By.xpath(".//p[text()='Конструктор']"); // ссылка на раздел Конструктор
     private final By logotype = By.className("AppHeader_header__logo__2D0X2"); // логотип на главной странице
     private final By loadingPage = By.className("Modal_modal_overlay__x2ZCr"); // модальное окно ожидания загрузки страницы

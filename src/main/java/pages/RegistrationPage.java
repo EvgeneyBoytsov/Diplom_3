@@ -9,6 +9,7 @@ import java.time.Duration;
 import static org.junit.Assert.assertTrue;
 
 public class RegistrationPage {
+
     private final WebDriver driver;
 
     private final By fieldName = By.cssSelector("input[name='name']"); // поле Имя

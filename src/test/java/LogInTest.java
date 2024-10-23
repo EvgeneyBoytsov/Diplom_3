@@ -25,15 +25,15 @@ public class LogInTest {
 
     @Test
     @DisplayName("Тест авторизации при клике на кнопку Войти в аккаунт на главной странице")
-    public void logInButtonLogTest() {
+    public void checkLoginUserWithClickButtonLogin() {
 
         ValidatableResponse createdResponse = client.createUser(defaultUser);
-        userAutToken = check.checkCreatedUser(createdResponse);
+        userAutToken = check.checkCreateUser(createdResponse);
 
         WebDriver driver = factory.getDriver();
         var homePage = new HomePage(driver);
 
-        homePage.open();
+        homePage.openStellarBurger();
         LoginPage loginPage = homePage.clickButtonLogIn();
 
         loginPage.loginOnClickLogAccountButton(defaultUser.getEmail(), defaultUser.getPassword());
@@ -43,16 +43,16 @@ public class LogInTest {
 
     @Test
     @DisplayName("Тест авторизации при клике на кнопку Личный кабинет на главной странице")
-    public void logInButtonPersonalCab() {
+    public void checkLoginUserWithClickButtonPersonalAccount() {
 
         ValidatableResponse createdResponse = client.createUser(defaultUser);
-        userAutToken = check.checkCreatedUser(createdResponse);
+        userAutToken = check.checkCreateUser(createdResponse);
 
         WebDriver driver = factory.getDriver();
         var homePage = new HomePage(driver);
         var loginPage = new LoginPage(driver);
 
-        homePage.open();
+        homePage.openStellarBurger();
         homePage.clickButtonPersonalAccount();
 
         loginPage.loginOnClickLogAccountButton(defaultUser.getEmail(), defaultUser.getPassword());
@@ -62,14 +62,14 @@ public class LogInTest {
 
     @Test
     @DisplayName("Тест авторизации при клике на кнопку Войти в аккаунт на странице регистрации")
-    public void logInRegPageTest() {
+    public void checkLoginUserWithClickRegistrationLink() {
         WebDriver driver = factory.getDriver();
         var homePage = new HomePage(driver);
 
         ValidatableResponse createdResponse = client.createUser(defaultUser);
-        userAutToken = check.checkCreatedUser(createdResponse);
+        userAutToken = check.checkCreateUser(createdResponse);
 
-        homePage.open();
+        homePage.openStellarBurger();
         LoginPage loginPage = homePage.clickButtonLogIn();
 
         RegistrationPage registerPage = loginPage.clickLinkRegister();
@@ -83,14 +83,14 @@ public class LogInTest {
 
     @Test
     @DisplayName("Тест авторизации при клике на кнопку Войти в аккаунт на странице восстановления пароля")
-    public void logInPasswordPageTest() {
+    public void checkLoginUserWithClickRecoverPasswordLink() {
         WebDriver driver = factory.getDriver();
         var homePage = new HomePage(driver);
 
         ValidatableResponse createdResponse = client.createUser(defaultUser);
-        userAutToken = check.checkCreatedUser(createdResponse);
+        userAutToken = check.checkCreateUser(createdResponse);
 
-        homePage.open();
+        homePage.openStellarBurger();
         LoginPage loginPage = homePage.clickButtonLogIn();
 
         RecoverPasswordPage passwordPage =  loginPage.clickLinkPassword();
@@ -105,6 +105,6 @@ public class LogInTest {
     @DisplayName("Удаление пользователя")
     public void deleteUser() {
         if (userAutToken != null)
-            client.delete(StringUtils.substringAfter(userAutToken, " "));
+            client.deleteUser(StringUtils.substringAfter(userAutToken, " "));
     }
 }

@@ -22,16 +22,16 @@ public class PersonalPageTest {
     public DriverRule factory = new DriverRule();
 
     @Test
-    @DisplayName("Тест перехода в личного кабинета авторизованного пользователя")
-    public void personalPageTest() {
+    @DisplayName("Тест перехода в личный кабинет авторизованного пользователя")
+    public void checkSwitchPersonalPage() {
 
         ValidatableResponse createdResponse = client.createUser(defaultUser);
-        userAutToken = check.checkCreatedUser(createdResponse);
+        userAutToken = check.checkCreateUser(createdResponse);
 
         WebDriver driver = factory.getDriver();
         var homePage = new HomePage(driver);
 
-        homePage.open();
+        homePage.openStellarBurger();
         LoginPage loginPage = homePage.clickButtonLogIn();
 
         loginPage.loginOnClickLogAccountButton(defaultUser.getEmail(), defaultUser.getPassword());
@@ -46,6 +46,6 @@ public class PersonalPageTest {
     @DisplayName("Удаление пользователя")
     public void deleteUser() {
         if (userAutToken != null)
-            client.delete(StringUtils.substringAfter(userAutToken, " "));
+            client.deleteUser(StringUtils.substringAfter(userAutToken, " "));
     }
 }
