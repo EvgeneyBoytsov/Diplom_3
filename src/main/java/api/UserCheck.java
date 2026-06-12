@@ -13,7 +13,7 @@ public class UserCheck {
     /**
      * Проверка создания пользователя
      * @param createdResponse - тело ответа на запрос создание пользователя
-     * @return - токен авторизации
+     * @return - возвращает токен авторизации
      */
     @Step("Проверка создания пользователя")
     public String checkCreateUser(ValidatableResponse createdResponse) {
